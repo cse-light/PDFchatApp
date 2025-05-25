@@ -86,6 +86,7 @@ def upload():
     return jsonify({"status": "ok", "pdf_names": list(pdfs.keys()), "summaries": summaries})
 
 @app.route("/get_pdfs")
+
 def get_pdfs():
     pdfs = get_session_pdfs()
     summaries = {name: {"pages": pdfs[name]["pages"], "size": pdfs[name]["size"]} for name in pdfs}
