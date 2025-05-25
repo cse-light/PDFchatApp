@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AskMyPDF</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Fonts: Sora & Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <!-- Sidebar with Hamburger Menu for mobile -->
+    <nav class="sidebar" aria-label="PDF Navigation">
+        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false" tabindex="0">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="logo" aria-label="App logo">
+            <span class="emoji">📄</span>
+            AskMyPDF
+        </div>
+        <div class="project-by">by Prakash Malla</div>
+        <div class="pdf-info" id="pdfInfo" aria-live="polite">No PDF uploaded.</div>
+        <div class="sidebar-actions">
+            <button onclick="location.reload()">New Chat</button>
+            <button onclick="scrollToBottom()">⬇ Scroll to Bottom</button>
+            <button id="toggleDark" style="margin-top:12px;">🌙 Toggle Dark Mode</button>
+            <button id="removeAllPdfs" style="margin-top:12px;">🗑️ Remove All PDFs</button>
+        </div>
+        <div style="flex:1"></div>
+        <div class="sidebar-footer">
+            Powered by Flask + GPT<br>
+            © 2025 Prakash Malla
+        </div>
+    </nav>
+    <main class="main" role="main">
+        <!-- Welcome Card for Zero PDFs -->
+        <div id="welcomeCard" class="welcome-card-outer" style="display:none;">
+            <div class="welcome-card" tabindex="0" aria-label="Welcome and PDF Upload">
+                <span class="emoji">📄</span>
+                <div class="title">Welcome to AskMyPDF!</div>
+                <div class="desc">Chat with your PDF documents.<br>
+                    <strong>Upload</strong> one or more PDFs to get started.</div>
+                <input id="welcomePdfInput" type="file" multiple accept="application/pdf" aria-label="Upload PDFs">
+                <div class="tip" style="margin-top:18px;">Or drag & drop PDFs onto this card.</div>
+            </div>
+        </div>
+        <!-- Header and PDF Picker -->
+        <header class="header-section">
+            <div class="header-title">
+                <span class="emoji">📄</span> 
+                <span>Chat with your <span style="color:#4f8cff">PDFs</span></span>
+            </div>
+            <div class="pdf-select-adv-row">
+                <span class="pdf-label">Select PDF:</span>
+                <select id="pdfPicker" aria-label="Select PDF"></select>
+            </div>
+        </header>
+        <!-- PDF Preview Bar (with mini icon/thumbnail and remove) -->
+        <section id="pdfPreviewBar" class="pdf-preview-bar" aria-label="PDF List"></section>
+        <!-- Chat Area -->
+        <section class="chat-container" id="chatbox" aria-live="polite" aria-label="Chat Messages"></section>
+        <!-- Input Bar -->
+        <form id="inputForm" class="input-bar" autocomplete="off" enctype="multipart/form-data" aria-label="Message input">
+            <span class="custom-file">
+                <label class="file-label" id="fileLabel" for="pdfInput">📎 Upload PDF(s)</label>
+                <input id="pdfInput" type="file" name="pdfs" accept="application/pdf" multiple aria-label="Upload PDFs">
+            </span>
+            <input type="text" id="userInput" placeholder="Ask a question about your PDF..." autocomplete="off" aria-label="Type your question">
+            <button type="button" id="micBtn" aria-label="Voice Input">
+                <span id="micIcon">🎤</span>
+            </button>
+            <button id="sendBtn" type="submit" aria-label="Send Message">Send</button>
+        </form>
+        <!-- Toast notification -->
+        <div id="toast" role="alert" aria-live="assertive" style="display:none;"></div>
+    </main>
+    <script src="/static/script.js"></script>
+</body>
+</html>
