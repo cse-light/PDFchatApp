@@ -1,6 +1,6 @@
 Flask
 python-dotenv
-openai
+openai==0.28
 PyMuPDF
 Werkzeug
 gunicorn
